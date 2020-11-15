@@ -1,0 +1,9 @@
+@import "_sprite";
+
+@mixin sprite-process($sprite, $koef) {
+  @include sprite($sprite);
+  background-position: (nth($sprite, 3) / $koef) (nth($sprite, 4) / $koef);
+  height: nth($sprite, 6) / $koef;
+  width: nth($sprite, 5) / $koef;
+  background-size: ($spritesheet-width / $koef) ($spritesheet-height / $koef);
+}

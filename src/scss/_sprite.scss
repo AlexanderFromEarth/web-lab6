@@ -1,0 +1,145 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$eq-name: 'eq';
+$eq-x: 480px;
+$eq-y: 480px;
+$eq-offset-x: -480px;
+$eq-offset-y: -480px;
+$eq-width: 400px;
+$eq-height: 400px;
+$eq-total-width: 1360px;
+$eq-total-height: 960px;
+$eq-image: 'sprite.png';
+$eq: (480px, 480px, -480px, -480px, 400px, 400px, 1360px, 960px, 'sprite.png', 'eq', );
+$green-up-arrow-copy-name: 'green-up-arrow copy';
+$green-up-arrow-copy-x: 0px;
+$green-up-arrow-copy-y: 0px;
+$green-up-arrow-copy-offset-x: 0px;
+$green-up-arrow-copy-offset-y: 0px;
+$green-up-arrow-copy-width: 480px;
+$green-up-arrow-copy-height: 480px;
+$green-up-arrow-copy-total-width: 1360px;
+$green-up-arrow-copy-total-height: 960px;
+$green-up-arrow-copy-image: 'sprite.png';
+$green-up-arrow-copy: (0px, 0px, 0px, 0px, 480px, 480px, 1360px, 960px, 'sprite.png', 'green-up-arrow copy', );
+$green-up-arrow-name: 'green-up-arrow';
+$green-up-arrow-x: 480px;
+$green-up-arrow-y: 0px;
+$green-up-arrow-offset-x: -480px;
+$green-up-arrow-offset-y: 0px;
+$green-up-arrow-width: 480px;
+$green-up-arrow-height: 480px;
+$green-up-arrow-total-width: 1360px;
+$green-up-arrow-total-height: 960px;
+$green-up-arrow-image: 'sprite.png';
+$green-up-arrow: (480px, 0px, -480px, 0px, 480px, 480px, 1360px, 960px, 'sprite.png', 'green-up-arrow', );
+$gt-name: 'gt';
+$gt-x: 960px;
+$gt-y: 0px;
+$gt-offset-x: -960px;
+$gt-offset-y: 0px;
+$gt-width: 400px;
+$gt-height: 400px;
+$gt-total-width: 1360px;
+$gt-total-height: 960px;
+$gt-image: 'sprite.png';
+$gt: (960px, 0px, -960px, 0px, 400px, 400px, 1360px, 960px, 'sprite.png', 'gt', );
+$lt-name: 'lt';
+$lt-x: 960px;
+$lt-y: 400px;
+$lt-offset-x: -960px;
+$lt-offset-y: -400px;
+$lt-width: 400px;
+$lt-height: 400px;
+$lt-total-width: 1360px;
+$lt-total-height: 960px;
+$lt-image: 'sprite.png';
+$lt: (960px, 400px, -960px, -400px, 400px, 400px, 1360px, 960px, 'sprite.png', 'lt', );
+$red-down-arrow-name: 'red-down-arrow';
+$red-down-arrow-x: 0px;
+$red-down-arrow-y: 480px;
+$red-down-arrow-offset-x: 0px;
+$red-down-arrow-offset-y: -480px;
+$red-down-arrow-width: 480px;
+$red-down-arrow-height: 480px;
+$red-down-arrow-total-width: 1360px;
+$red-down-arrow-total-height: 960px;
+$red-down-arrow-image: 'sprite.png';
+$red-down-arrow: (0px, 480px, 0px, -480px, 480px, 480px, 1360px, 960px, 'sprite.png', 'red-down-arrow', );
+$spritesheet-width: 1360px;
+$spritesheet-height: 960px;
+$spritesheet-image: 'sprite.png';
+$spritesheet-sprites: ($eq, $green-up-arrow-copy, $green-up-arrow, $gt, $lt, $red-down-arrow, );
+$spritesheet: (1360px, 960px, 'sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.region-filter {
+  .region-filter__title {
+    &:after {
+      content: ":";
+    }
+
+    margin-right: 0.2em;
+  }
+
+  .region-filter__input {
+    font-size: 100%;
+  }
+
+  margin-top: 0.3em;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,123 @@
+@import "_mixins";
+
+$border-color: black;
+
+.demography-table {
+  .demography-table-header {
+    .demography-table-header__title,
+    .demography-table-header__year,
+    .demography-table-header__rate {
+      border: 1px solid $border-color;
+    }
+
+    .demography-table-header__icon-birth-rate {
+      @include sprite-process($green-up-arrow, 20);
+      display: inline-block;
+    }
+
+    .demography-table-header__icon-death-rate {
+      @include sprite-process($red-down-arrow, 20);
+      display: inline-block;
+    }
+
+    font-weight: 600;
+    border: 1px solid $border-color;
+  }
+
+  .demography-table-footer {
+    .demography-table-footer__title,
+    .demography-table-footer__birth-rate,
+    .demography-table-footer__death-rate {
+      border: 1px solid $border-color;
+    }
+
+    .demography-table-footer__title {
+      font-weight: 600;
+    }
+
+    .demography-table-footer__icon-gt {
+      @include sprite-process($gt, 20);
+      display: inline-block;
+    }
+
+    .demography-table-footer__icon-lt {
+      @include sprite-process($lt, 20);
+      display: inline-block;
+    }
+
+    .demography-table-footer__icon-eq {
+      @include sprite-process($eq, 25);
+      display: inline-block;
+    }
+
+    border: 1px solid $border-color;
+  }
+
+  .demography-table-body {
+    .demography-table-adder {
+      .demography-table-adder__head {
+        display: flex;
+        margin: 0.2em;
+      }
+      .demography-table-adder__name {
+        margin-left: auto;
+      }
+
+      .demography-table-adder__submit {
+        margin-right: auto;
+      }
+
+      .demography-table-adder__birth-rate {
+        input {
+          width: 100%;
+        }
+        padding-right: 1.2em;
+        border: 1px solid $border-color;
+      }
+
+      .demography-table-adder__death-rate {
+        input {
+          width: 100%;
+        }
+        padding-right: 1.2em;
+        border: 1px solid $border-color;
+      }
+
+      border: 1px solid $border-color;
+    }
+    .demography-table-row {
+      .demography-table-row__name {
+        text-decoration: underline;
+        border: 1px solid $border-color;
+      }
+
+      .demography-table-row__icon-gt {
+        @include sprite-process($gt, 20);
+        display: inline-block;
+      }
+
+      .demography-table-row__icon-lt {
+        @include sprite-process($lt, 20);
+        display: inline-block;
+      }
+
+      .demography-table-row__icon-eq {
+        @include sprite-process($eq, 25);
+        display: inline-block;
+      }
+
+      .demography-table-row__birth-rate {
+        color: green;
+        border: 1px solid $border-color;
+      }
+
+      .demography-table-row__death-rate {
+        color: red;
+        border: 1px solid $border-color;
+      }
+    }
+  }
+
+  border: 1px solid $border-color;
+  border-collapse: collapse;
+}
